@@ -26,7 +26,7 @@ def introduction():
     print("After finishing this introduction section you will read the rules")
     print("Once you've read the rules, you'll then provide some personal info")
     print("Once filled out, you can then answer the questions which appear")
-    print("Your results will then be stored on a spreadsheet")
+    print("Your results will then be stored on a spreadsheet\n")
 
     while True:
         introduction_input = input("Please enter letter 'e' and press enter\n")
@@ -44,20 +44,17 @@ def introduction_input_check(values):
     ValueError if input does not match letter 'e'
     ValueError if input is more than one letter
     """
-    if values != "e":
-        raise ValueError(
-            "Invalid letter, please enter 'e' and try again."
-        )
+    try:
+        if ((values != "e") or (len(values) != 1)):
+            raise ValueError(
+                "Please enter 'e' and try again."
+            )
+
+    except ValueError as x:
+        print(f"Whoops! Something went wrong. {x} \n")
         return False
 
-    if len(values) != 1:
-        raise ValueError(
-            "Too many characters, please enter 'e' and try again."
-        )
-        return False
-
-    else:
-        return True
+    return True
 
 
 introduction()
