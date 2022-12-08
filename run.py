@@ -37,6 +37,7 @@ def introduction():
         if introduction_input_check(introduction_input):
             print("\nLoading...")
             break
+        personal_information_name()
     print("------------------------------------------------------------------")
 
     return introduction_input
@@ -75,6 +76,7 @@ def personal_information_name():
             print(f"Thank you {name_input.title()}!")
             print("---------------------------------------------------------")
             break
+        personal_information_age()
 
     return name_input
 
@@ -137,7 +139,7 @@ def car_info_intro():
     
     print("Thank you " + str(name_input).title() + " for your details.")
     print(
-        "We are now going to ask some basic questions about your car"
+        "We are now going to ask some basic questions about your car\n"
     )
     car_info_make()
 
@@ -164,9 +166,7 @@ def car_info_model():
         global car_model
         car_model = input("\nPlease enter the car model here:\n")
 
-        if car_model_check(car_model):
-            car_info_year()
-            break
+        car_info_year()
         return car_info_model()
 
 
@@ -180,6 +180,7 @@ def car_info_year():
 
         if car_year_check(car_year):
             car_info_check()
+            return car_info_year()
 
 
 def car_make_check(values):
@@ -189,7 +190,7 @@ def car_make_check(values):
     try:
         if values.isdigit():
             raise ValueError(
-                "Please enter a manufacturer and try again.\nExample: VolksWagen"
+                "Please enter a valid manufacturer and try again.\n"
             )
     except ValueError as emsg:
         print(f"Whoops! Something went wrong. {emsg} \n")
@@ -198,13 +199,54 @@ def car_make_check(values):
     return True
 
 
+def car_year_check(values):
+    """
+    ValueError if user inputs numbers
+    """
+    try:
+        if values.isalpha():
+            raise ValueError(
+                "Please enter a valid year and try again.\nExample: 2003"
+            )
+    except ValueError as emsg:
+        print(f"Whoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
+
+
+def car_info_check():
+    """
+    Checks that user is happy with inputs
+    """
+    print("\nThank you for the details.")
+    print("Please confirm the following:\n")
+    print("Car Manufacturer: " + car_make.title())
+    print("Car Model: " + car_model.title())
+    print("Car Year: " + car_year + "\n")
+
+    while True:
+        car_info_check_result = input(
+            "Please select 'a' to continue. To retry please select 'r':\n"
+        )
+
+        if car_info_check_result == "a":
+            print("test")
+            return False
+        
+        if car_info_check_result == "r":
+            car_info_make()
+            return False
+
+        print("Whoops! Something went wrong.")
+        print("Please select either 'a' or 'r'.\n")
+
+
 def main():
     """
     Contains all major functions
     """
     introduction()
-    personal_information_name()
-    personal_information_age()
     car_info_intro()
 
 
