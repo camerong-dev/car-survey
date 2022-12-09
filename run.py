@@ -227,15 +227,16 @@ def car_info_check():
     print("Car Year: " + car_year + "\n")
 
     while True:
+        print("Please can you confirm that you've put in the correct details")
         car_info_check_result = input(
-            "Please select 'a' to continue. To retry please select 'r':\n"
+            "\nSelect 'y' to continue. To retry please select 'n':\n"
         )
 
-        if car_info_check_result == "a":
-            print("test")
+        if car_info_check_result == "y":
+            question_one()
             return False
 
-        if car_info_check_result == "r":
+        if car_info_check_result == "n":
             car_info_make()
             return False
 
@@ -247,9 +248,8 @@ def question_one():
     """
     First question for user to answer
     """
-    print("We will now begin asking you questions")
+    print("\n\nWe will now begin asking you questions")
     print("Please answer truthfully, as this helps other people")
-    print("\n")
     print("-----------------------------------------------")
     print("\n1) What year did you come into ownership of this car?")
 
@@ -274,7 +274,7 @@ def question_one_check(values):
                 "Please enter a valid year and try again.\nExample: 2003"
             )
     except ValueError as emsg:
-        print(f"Whoops! Something went wrong. {emsg} \n")
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
         return False
 
     return True
