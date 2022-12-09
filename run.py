@@ -40,7 +40,7 @@ def introduction():
             print("\nLoading...")
             break
         personal_information_name()
-    print("------------------------------------------------------------------")
+    print("---------------------------------------------------------")
 
     return introduction_input
 
@@ -74,12 +74,12 @@ def personal_information_name():
         name_input = input("Please enter your name here:\n")
 
         if name_check(name_input):
-            print(f"Thank you {name_input.title()}!")
+            print(f"\nThank you {name_input.title()}!")
             print("---------------------------------------------------------")
             break
-        
+
     personal_information_age()
-    
+
     return name_input
 
 
@@ -91,7 +91,7 @@ def personal_information_age():
         age_input = input("Please enter your age here:\n")
 
         if age_check(age_input):
-            print("Thank you for telling us your age!\n")
+            print("\nThank you for this!\n")
             print("---------------------------------------------------------")
             break
 
@@ -108,7 +108,7 @@ def name_check(values):
                 "Please enter a name and try again.\nExample: Jane Doe"
             )
     except ValueError as emsg:
-        print(f"Whoops! Something went wrong. {emsg} \n")
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
         return False
 
     return True
@@ -125,7 +125,7 @@ def age_check(values):
             )
 
     except ValueError as emsg:
-        print(f"Whoops! Something went wrong. {emsg} \n")
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
         return False
 
     return True
@@ -234,13 +234,54 @@ def car_info_check():
         if car_info_check_result == "a":
             print("test")
             return False
-        
+
         if car_info_check_result == "r":
             car_info_make()
             return False
 
         print("Whoops! Something went wrong.")
         print("Please select either 'a' or 'r'.\n")
+
+
+def question_one():
+    """
+    First question for user to answer
+    """
+    print("We will now begin asking you questions")
+    print("Please answer truthfully, as this helps other people")
+    print("\n")
+    print("-----------------------------------------------")
+    print("\n1) What year did you come into ownership of this car?")
+
+    while True:
+        global year_of_ownership
+        year_of_ownership = input(
+            "Please input the year here:\n"
+        )
+
+        if question_one_check(year_of_ownership):
+            question_two()
+            return question_one()
+
+
+def question_one_check(values):
+    """
+    ValueError appears if user inputs letters
+    """
+    try:
+        if values.isalpha():
+            raise ValueError(
+                "Please enter a valid year and try again.\nExample: 2003"
+            )
+    except ValueError as emsg:
+        print(f"Whoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
+
+
+def question_two():
+    print("Hello")
 
 
 def main():
