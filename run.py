@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import date
 
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -70,16 +71,16 @@ def personal_information_name():
     print("Example - Jane Doe\n")
 
     while True:
-        global name_input
         name_input = input("Please enter your name here:\n")
 
         if name_check(name_input):
             print(f"Thank you {name_input.title()}!")
             print("---------------------------------------------------------")
             break
-        personal_information_age()
-
-    return personal_information_name()
+        
+    personal_information_age()
+    
+    return name_input
 
 
 def personal_information_age():
@@ -87,7 +88,6 @@ def personal_information_age():
     Users are requested to input their age
     """
     while True:
-        global age_input
         age_input = input("Please enter your age here:\n")
 
         if age_check(age_input):
@@ -95,7 +95,7 @@ def personal_information_age():
             print("---------------------------------------------------------")
             break
 
-    return personal_information_age()
+    return age_input
 
 
 def name_check(values):
@@ -137,6 +137,7 @@ def car_info_intro():
     to provide basic info
     of their car
     """
+    name_input = personal_information_name()
     print("Thank you " + str(name_input).title() + " for your details.")
     print(
         "We are now going to ask some basic questions about your car\n"
@@ -231,7 +232,7 @@ def car_info_check():
         )
 
         if car_info_check_result == "a":
-            question_one()
+            print("test")
             return False
         
         if car_info_check_result == "r":
@@ -240,47 +241,6 @@ def car_info_check():
 
         print("Whoops! Something went wrong.")
         print("Please select either 'a' or 'r'.\n")
-
-    
-def question_one():
-    """
-    First question for user to answer
-    """
-    print("We will now begin asking you questions")
-    print("Please answer truthfully, as this helps other people")
-    print("\n")
-    print("-----------------------------------------------")
-    print("\n1) What year did you come into ownership of this car?")
-
-    while True:
-        global year_of_ownership
-        year_of_ownership = input(
-            "Please input the year here:\n"
-        )
-
-        if question_one_check(year_of_ownership):
-            question_two()
-            return question_one()
-
-
-def question_one_check(values):
-    """
-    ValueError appears if user inputs letters
-    """
-    try:
-        if values.isalpha():
-            raise ValueError(
-                "Please enter a valid year and try again.\nExample: 2003"
-            )
-    except ValueError as emsg:
-        print(f"Whoops! Something went wrong. {emsg} \n")
-        return False
-
-    return True
-
-
-def question_two():
-    print("Hello")
 
 
 def main():
