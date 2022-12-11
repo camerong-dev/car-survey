@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from datetime import date
 
 
 SCOPE = [
@@ -61,6 +60,28 @@ def introduction_input_check(values):
         return False
 
     return True
+
+
+def user_choice():
+    """
+    Giving user the choice of finding a car or doing the survey
+    """
+    print("\nWould you like to:")
+    print("A) Complete the survey")
+    print("B) Find existing surveys")
+
+    user_choice_input = input("Please select either 'a' or 'b':\n")
+
+    if user_choice_input == "a":
+        personal_information_name()
+        return False
+
+    if user_choice_input == "b":
+        find_surveys()
+        return False
+
+    print("Whoops! Something went wrong.")
+    print("Please select either 'y' or 'n'.\n")
 
 
 def personal_information_name():
@@ -336,6 +357,12 @@ def update_worksheet(results):
     survey_sheet = SHEET.worksheet("survey_answers")
     survey_sheet.append_row(results)
     print("Worksheet updated")
+
+
+def find_surveys():
+    """
+    Asks user for car make, model and year then searches the spreadsheet
+    """
 
 
 def main():
