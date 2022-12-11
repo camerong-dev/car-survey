@@ -77,7 +77,7 @@ def user_choice():
         return False
 
     if user_choice_input == "b":
-        find_surveys()
+        find_survey_input_one()
         return False
 
     print("Whoops! Something went wrong.")
@@ -359,9 +359,83 @@ def update_worksheet(results):
     print("Worksheet updated")
 
 
-def find_surveys():
+def find_survey_input_one():
     """
-    Asks user for car make, model and year then searches the spreadsheet
+    Asks user for car make to search in spreadsheet
+    """
+    print(
+        "To find any existing survey, we will need the make"
+        ", model and year of car.\n"
+        )
+
+    while True:
+        global find_survey_manufacturer
+        find_survey_manufacturer = input(
+            "Please enter the manufacturer below:\n"
+        )
+        if find_survey_manufacturer_check(find_survey_manufacturer):
+            find_survey_input_two()
+
+
+def find_survey_input_two():
+    """
+    Asks user for car model to search in spreadsheet
+    """
+    global find_survey_model
+    find_survey_model = input(
+        "Please enter the model below:\n"
+    )
+    find_survey_input_three()
+
+
+def find_survey_input_three():
+    """
+    Asks user for car year to search in spreadsheetS
+    """
+    while True:
+        global find_survey_year
+        find_survey_year = input(
+            "Please enter the year below:\n"
+        )
+        if find_survey_input_three_check(find_survey_year):
+            start_search_one() 
+
+
+def find_survey_manufacturer_check(values):
+    """
+    ValueError if user inputs numbers
+    """
+    try:
+        if values.isdigit():
+            raise ValueError(
+                "Please enter a valid manufacturer and try again.\n"
+            )
+    except ValueError as emsg:
+        print(f"Whoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
+
+
+def find_survey_input_three_check(values):
+    """
+    ValueError if user inputs letters
+    """
+    try:
+        if values.isalpha()():
+            raise ValueError(
+                "Please enter a valid year and try again.\n"
+            )
+    except ValueError as emsg:
+        print(f"Whoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
+
+
+def start_search_one():
+    """
+    Searches spreadsheet with name user inputted
     """
 
 
