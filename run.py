@@ -156,7 +156,7 @@ def car_info_make():
         if car_make_check(car_make):
             car_info_model()
             break
-        return car_info_make()
+        return car_info_year()
 
 
 def car_info_model():
@@ -168,7 +168,8 @@ def car_info_model():
         car_model = input("\nPlease enter the car model here:\n")
 
         car_info_year()
-        return car_info_model()
+        break
+    return car_info_model()
 
 
 def car_info_year():
@@ -224,10 +225,9 @@ def car_info_check():
     print("Please confirm the following:\n")
     print("Car Manufacturer: " + car_make.title())
     print("Car Model: " + car_model.title())
-    print("Car Year: " + car_year + "\n")
+    print("Car Year: " + car_year)
 
     while True:
-        print("Please can you confirm that you've put in the correct details")
         car_info_check_result = input(
             "\nSelect 'y' to continue. To retry please select 'n':\n"
         )
@@ -241,27 +241,27 @@ def car_info_check():
             return False
 
         print("Whoops! Something went wrong.")
-        print("Please select either 'a' or 'r'.\n")
+        print("Please select either 'y' or 'n'.\n")
 
 
 def question_one():
     """
     First question for user to answer
     """
-    print("\n\nWe will now begin asking you questions")
-    print("Please answer truthfully, as this helps other people")
+    print("\n\nWe will now ask you some questions")
+    print("Please answer to the best of your ability")
+    print("As this can provide helpful insights for others.")
     print("-----------------------------------------------")
     print("\n1) What year did you come into ownership of this car?")
 
     while True:
-        global year_of_ownership
-        year_of_ownership = input(
+        global question_one_input
+        question_one_input = input(
             "Please input the year here:\n"
         )
 
-        if question_one_check(year_of_ownership):
+        if question_one_check(question_one_input):
             question_two()
-            return question_one()
 
 
 def question_one_check(values):
@@ -281,8 +281,23 @@ def question_one_check(values):
 
 
 def question_two():
-    print("Hello")
+    """
+    Second question for user to answer
+    """
+    print("\n2)How do you use your car?")
+    global question_two_input
+    question_two_input = input("Please answer here:\n")
 
+    question_three()
+
+
+def question_three():
+    """
+    Third question for user to answer
+    """
+    print("\n3) What do you dislike about your car?")
+    global question_three_input
+    question_three_input = input("Please answer here:\n")
 
 def main():
     """
