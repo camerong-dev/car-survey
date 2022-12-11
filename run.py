@@ -19,16 +19,19 @@ def introduction():
     Introduces the user to the program.
     A short welcome message appears, followed by how it works
     """
-    print("Welcome to the Car Survey!")
-    print("This survey is collect as many different opinons on peoples cars")
-    print("So everyone can have honest insight to these cars. \n")
-
+    print("Welcome to the Car Survey!\n")
     print("What happens:")
     print("After finishing this introduction section")
+    print("You'll have the choice to complete a survey or find a survey")
+    print("\nIf completing a survey:")
     print("You'll us provide some personal details")
     print("Once filled out, you can then answer the questions which appear")
-    print("Your results will then be stored on a spreadsheet")
-    print("You can then view your results once completed\n")
+    print(
+        "Your results will then be stored on a spreadsheet for others to see"
+        )
+    print("\nIf finding a survey:")
+    print("You'll provide us the make, model and year of car")
+    print("Then we will search for all available surveys of that car\n")
 
     while True:
         introduction_input = input(
@@ -38,8 +41,7 @@ def introduction():
         if introduction_input_check(introduction_input):
             print("\nLoading...")
             break
-        personal_information_name()
-    print("---------------------------------------------------------")
+    user_choice()
 
     return introduction_input
 
@@ -70,7 +72,7 @@ def user_choice():
     print("A) Complete the survey")
     print("B) Find existing surveys")
 
-    user_choice_input = input("Please select either 'a' or 'b':\n")
+    user_choice_input = input("\nPlease select either 'a' or 'b':\n")
 
     if user_choice_input == "a":
         personal_information_name()
@@ -130,7 +132,7 @@ def name_check(values):
     ValueError if user inputs numbers
     """
     try:
-        if values.isdigit():
+        if (values.isdigit() or (len(values) != 1)):
             raise ValueError(
                 "Please enter a name and try again.\nExample: Jane Doe"
             )
@@ -146,7 +148,7 @@ def age_check(values):
     ValueError if user inputs letters
     """
     try:
-        if values.isalpha():
+        if (values.isalpha() or (len(values) != 1)):
             raise ValueError(
                 "Please enter an age and try again."
             )
