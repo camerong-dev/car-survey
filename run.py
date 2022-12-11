@@ -299,6 +299,37 @@ def question_three():
     global question_three_input
     question_three_input = input("Please answer here:\n")
 
+    final_check()
+
+
+def final_check():
+    """
+    Prompt for user to confirm updating worksheet
+    """
+    user_inputs = question_one_input, question_two_input, question_three_input
+    print("Are you happy with your inputs?")
+    final_check_answer = input("Please answer Yes 'y' or No 'n':\n")
+   
+    if final_check_answer == "y":
+        update_worksheet(user_inputs)
+        return False
+
+    if final_check_answer == "n":
+        introduction()
+        return False
+    return user_inputs
+
+
+def update_worksheet(results):
+    """
+    Updating spreadsheet, adds new row
+    """
+    print("Updating worksheet...")
+    survey_sheet = SHEET.worksheet("survey_answers")
+    survey_sheet.append_row(results)
+    print("Worksheet updated")
+
+
 def main():
     """
     Contains all major functions
