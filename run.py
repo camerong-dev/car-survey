@@ -80,6 +80,9 @@ def personal_information_name():
 
     personal_information_age()
 
+    global username
+    username = name_input
+
     return name_input
 
 
@@ -94,6 +97,9 @@ def personal_information_age():
             print("\nThank you for this!\n")
             print("---------------------------------------------------------")
             break
+
+    global user_age
+    user_age = age_input
 
     return age_input
 
@@ -255,12 +261,12 @@ def question_one():
     print("\n1) What year did you come into ownership of this car?")
 
     while True:
-        global question_one_input
-        question_one_input = input(
+        global one_input
+        one_input = input(
             "Please input the year here:\n"
         )
 
-        if question_one_check(question_one_input):
+        if question_one_check(one_input):
             question_two()
 
 
@@ -285,8 +291,8 @@ def question_two():
     Second question for user to answer
     """
     print("\n2)How do you use your car?")
-    global question_two_input
-    question_two_input = input("Please answer here:\n")
+    global two_input
+    two_input = input("Please answer here:\n")
 
     question_three()
 
@@ -296,8 +302,8 @@ def question_three():
     Third question for user to answer
     """
     print("\n3) What do you dislike about your car?")
-    global question_three_input
-    question_three_input = input("Please answer here:\n")
+    global three_input
+    three_input = input("Please answer here:\n")
 
     final_check()
 
@@ -306,10 +312,12 @@ def final_check():
     """
     Prompt for user to confirm updating worksheet
     """
-    user_inputs = question_one_input, question_two_input, question_three_input
-    print("Are you happy with your inputs?")
+    user_inputs = [
+        username, user_age, car_make, car_model, car_year,
+        one_input, two_input, three_input]
+    print("\nAre you happy with your inputs?")
     final_check_answer = input("Please answer Yes 'y' or No 'n':\n")
-   
+
     if final_check_answer == "y":
         update_worksheet(user_inputs)
         return False
