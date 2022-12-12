@@ -124,15 +124,13 @@ def personal_information_age():
     global user_age
     user_age = age_input
 
-    return age_input
-
 
 def name_check(values):
     """
     ValueError if user inputs numbers
     """
     try:
-        if (values.isdigit() or (len(values) != 1)):
+        if values.isdigit():
             raise ValueError(
                 "Please enter a name and try again.\nExample: Jane Doe"
             )
@@ -148,7 +146,7 @@ def age_check(values):
     ValueError if user inputs letters
     """
     try:
-        if (values.isalpha() or (len(values) != 1)):
+        if values.isalpha():
             raise ValueError(
                 "Please enter an age and try again."
             )
@@ -376,7 +374,8 @@ def find_survey_input_one():
             "Please enter the manufacturer below:\n"
         )
         if find_survey_manufacturer_check(find_survey_manufacturer):
-            find_survey_input_two()
+            start_search_one()
+        return find_survey_input_one()
 
 
 def find_survey_input_two():
@@ -388,6 +387,7 @@ def find_survey_input_two():
         "Please enter the model below:\n"
     )
     find_survey_input_three()
+    return find_survey_input_two()
 
 
 def find_survey_input_three():
@@ -400,7 +400,8 @@ def find_survey_input_three():
             "Please enter the year below:\n"
         )
         if find_survey_input_three_check(find_survey_year):
-            start_search_one() 
+            start_search_one()
+        return find_survey_input_three()
 
 
 def find_survey_manufacturer_check(values):
@@ -439,6 +440,11 @@ def start_search_one():
     """
     Searches spreadsheet with name user inputted
     """
+    survey_sheet = SHEET.worksheet("survey_answers")
+    find_cell = survey_sheet.find(find_survey_manufacturer)
+    found_cell_row = find_cell.row
+    all_values = survey_sheet.row_values(found_cell_row)
+    print(all_values)
 
 
 def main():
