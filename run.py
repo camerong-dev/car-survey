@@ -1,4 +1,5 @@
 import gspread
+import pandas as pd
 from google.oauth2.service_account import Credentials
 
 
@@ -123,6 +124,8 @@ def personal_information_age():
 
     global user_age
     user_age = age_input
+
+    return age_input
 
 
 def name_check(values):
@@ -438,13 +441,27 @@ def find_survey_input_three_check(values):
 
 def start_search_one():
     """
-    Searches spreadsheet with name user inputted
+    Searches spreadsheet with manufacturer user inputted
     """
     survey_sheet = SHEET.worksheet("survey_answers")
-    find_cell = survey_sheet.find(find_survey_manufacturer)
-    found_cell_row = find_cell.row
-    all_values = survey_sheet.row_values(found_cell_row)
-    print(all_values)
+    list_of_lists = survey_sheet.get_all_values()
+    data = list_of_lists
+    df = pd.DataFrame(data, columns=[
+        'Name: ', 'Age: ', 'Make Of Car: ', 'Model Of Car: ',
+        'Year Of Car: ', 'First Year Of Ownership: ',
+        'How The Car Is Used: ', 'Cons: '
+        ])
+    print(df)
+
+
+def start_search_two():
+    """
+    Searches spreadsheet with model user inputted
+    """
+    survey_sheet = SHEET.worksheet("survey_answers")
+    found_cell_row = survey_sheet.findall(find_survey_model)
+    found_search_two = survey_sheet.row_values(found_cell_row)
+    print(found_search_two)
 
 
 def main():
