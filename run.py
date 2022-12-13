@@ -20,7 +20,7 @@ def introduction():
     Introduces the user to the program.
     A short welcome message appears, followed by how it works
     """
-    print("Welcome to the Car Survey!\n")
+    print("\n\nWelcome to the Car Survey!\n")
     print("What happens:")
     print("After finishing this introduction section")
     print("You'll have the choice to complete a survey or find a survey")
@@ -283,7 +283,7 @@ def question_one():
     while True:
         global one_input
         one_input = input(
-            "Please input the year here:\n"
+            "\nPlease input the year here:\n"
         )
 
         if question_one_check(one_input):
@@ -311,7 +311,7 @@ def question_two():
     Second question for user to answer
     """
     print("\n2) List two things you like about your car")
-    print("  eg - Sound of car, comfortable seats \n")
+    print("   eg - Sound of car, comfortable seats \n")
     global two_input
     two_input = input("Please answer here:\n")
 
@@ -323,7 +323,7 @@ def question_three():
     Third question for user to answer
     """
     print("\n3) List two thing you dislike about your car")
-    print("  eg - Stiff ride, cheap feeling interior \n")
+    print("   eg - Stiff ride, cheap feeling interior \n")
     global three_input
     three_input = input("Please answer here:\n")
 
@@ -350,7 +350,7 @@ def final_check():
     if final_check_answer == "n":
         introduction()
         return False
-    
+
     print("Whoops! Something went wrong.")
     print("Please select either 'y' or 'n'.\n")
 
@@ -374,24 +374,19 @@ def end_of_survey():
     """
     print("Thank you for completing this survey!")
     print("Would you like to:\n")
-    print("A) Complete another survey")
-    print("B) View other surveys")
-    print("C) Exit the program")
+    print("A) View other surveys")
+    print("B) Exit the program")
 
     while True:
         end_of_survey_result = input(
-            "\nPlease select 'a' , 'b' or 'c':\n"
+            "\nPlease select 'a' or 'b':\n"
         )
 
         if end_of_survey_result == "a":
-            personal_information_name()
-            return False
-
-        if end_of_survey_result == "b":
             import_all_values()
             return False
 
-        if end_of_survey_result == "c":
+        if end_of_survey_result == "b":
             exit()
             return False
 
@@ -407,31 +402,55 @@ def import_all_values():
     global table
     table = pd.DataFrame(data, columns=[
         'Name: ', 'Age: ', 'Make Of Car: ', 'Model Of Car: ',
-        'Year Of Car: ', 'First Year Of Ownership: ',
-        'How The Car Is Used: ', 'Cons: '
+        'Year Of Car: ', 'Year Of Ownership: ',
+        'Pros: ', 'Cons: '
         ])
-    find_survey_input_one()
+    input_choice()
 
 
 def input_choice():
     """
     Give user different choices for filtering surveys
     """
-    print("")
+    print("\nHow would you like to filter the surveys?\n")
+    print("A) By manufacturer")
+    print("B) By manufacturer and model")
+    print("C) By manufacturer, model and year")
+    print("D) By manufacturer and year")
+    print("E) By year")
+
+    while True:
+        input_choice_answer = input(
+             "\nPlease select 'a' , 'b' , 'c' , 'd' or 'e':\n"
+        )
+
+        if input_choice_answer == "a":
+            find_survey_input_one()
+            return False
+
+        if input_choice_answer == "b":
+            import_all_values()
+            return False
+
+        if input_choice_answer == "c":
+            exit()
+            return False
+
+        print("\nWhoops! Something went wrong.")
 
 
 def find_survey_input_one():
     """
     Asks user for car make to search in spreadsheet
     """
-    while True:
-        global find_survey_manufacturer
-        find_survey_manufacturer = input(
-            "Please enter the manufacturer below:\n"
-        )
-        if find_survey_manufacturer_check(find_survey_manufacturer):
-            start_search_one()
-        return find_survey_input_one()
+    global find_survey_manufacturer
+    find_survey_manufacturer = input(
+        "\nPlease enter the manufacturer below:\n"
+    )
+    if find_survey_manufacturer_check(find_survey_manufacturer):
+        start_search_one()
+        
+    return find_survey_input_one()
 
 
 def find_survey_input_two():
@@ -440,7 +459,7 @@ def find_survey_input_two():
     """
     global find_survey_model
     find_survey_model = input(
-        "Please enter the model below:\n"
+        "\nPlease enter the model below:\n"
     )
     find_survey_input_three()
     return find_survey_input_two()
@@ -497,7 +516,21 @@ def start_search_one():
     Searches spreadsheet with manufacturer user inputted
     """
     filter_one = table[table['Make Of Car: '] == find_survey_manufacturer]
+    print("\n")
     print(filter_one)
+
+    print("\n\nThank you for checking out this survey.")
+
+    while True:
+        input_one_choice = input(
+            "\nPlease select 'e' to exit program: \n"
+        )
+
+        if input_one_choice == "e":
+            exit()
+            return False
+
+        print("\nWhoops! Something went wrong.")
 
 
 def start_search_two():
