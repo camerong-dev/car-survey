@@ -49,17 +49,15 @@ def introduction():
 
 def introduction_input_check(values):
     """
-    ValueError if input does not match letter 'e'
-    ValueError if input is more than one letter
+    Error displayed if user inputs letter other than e
     """
     try:
         if ((values != "e") or (len(values) != 1)):
             raise ValueError(
-                "Please enter 'e' and try again."
+                "Please enter 'e' and try again"
             )
-
     except ValueError as emsg:
-        print(f"Whoops! Something went wrong. {emsg} \n")
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
         return False
 
     return True
@@ -312,7 +310,8 @@ def question_two():
     """
     Second question for user to answer
     """
-    print("\n2)How do you use your car?")
+    print("\n2) List two things you like about your car")
+    print("  eg - Sound of car, comfortable seats \n")
     global two_input
     two_input = input("Please answer here:\n")
 
@@ -323,7 +322,8 @@ def question_three():
     """
     Third question for user to answer
     """
-    print("\n3) What do you dislike about your car?")
+    print("\n3) List two thing you dislike about your car")
+    print("  eg - Stiff ride, cheap feeling interior \n")
     global three_input
     three_input = input("Please answer here:\n")
 
@@ -337,8 +337,11 @@ def final_check():
     user_inputs = [
         username, user_age, car_make, car_model, car_year,
         one_input, two_input, three_input]
-    print("\nAre you happy with your inputs?")
-    final_check_answer = input("Please answer Yes 'y' or No 'n':\n")
+    print("\nAre you happy with your inputs?\n")
+    print("1) " + one_input)
+    print("2) " + two_input)
+    print("3) " + three_input)
+    final_check_answer = input("\nPlease answer Yes 'y' or No 'n':\n")
 
     if final_check_answer == "y":
         update_worksheet(user_inputs)
