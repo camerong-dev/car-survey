@@ -80,7 +80,7 @@ def user_choice():
         return False
 
     if user_choice_input == "b":
-        find_survey_input_one()
+        import_all_values()
         return False
 
     print("Whoops! Something went wrong.")
@@ -360,6 +360,21 @@ def update_worksheet(results):
     print("Worksheet updated")
 
 
+def import_all_values():
+    """
+    Imports all values on spreadsheet into dataframe
+    """
+    survey_sheet = SHEET.worksheet("survey_answers")
+    data = survey_sheet.get_all_values()
+    global table
+    table = pd.DataFrame(data, columns=[
+        'Name: ', 'Age: ', 'Make Of Car: ', 'Model Of Car: ',
+        'Year Of Car: ', 'First Year Of Ownership: ',
+        'How The Car Is Used: ', 'Cons: '
+        ])
+    find_survey_input_one()
+
+
 def find_survey_input_one():
     """
     Asks user for car make to search in spreadsheet
@@ -441,14 +456,8 @@ def start_search_one():
     """
     Searches spreadsheet with manufacturer user inputted
     """
-    survey_sheet = SHEET.worksheet("survey_answers")
-    data = survey_sheet.get_all_values()
-    table = pd.DataFrame(data, columns=[
-        'Name: ', 'Age: ', 'Make Of Car: ', 'Model Of Car: ',
-        'Year Of Car: ', 'First Year Of Ownership: ',
-        'How The Car Is Used: ', 'Cons: '
-        ])
-    print(table)
+    filter_one = table[table['Make Of Car: '] == find_survey_manufacturer]
+    print(filter_one)
 
 
 def start_search_two():
