@@ -268,8 +268,8 @@ def car_info_check():
             car_info_make()
             return False
 
-        print("Whoops! Something went wrong.")
-        print("Please select either 'y' or 'n'.\n")
+        print("\nWhoops! Something went wrong.")
+        print("Please select either 'y' or 'n'.")
 
 
 def question_one():
@@ -347,6 +347,10 @@ def final_check():
     if final_check_answer == "n":
         introduction()
         return False
+    
+    print("Whoops! Something went wrong.")
+    print("Please select either 'y' or 'n'.\n")
+
     return user_inputs
 
 
@@ -354,10 +358,41 @@ def update_worksheet(results):
     """
     Updating spreadsheet, adds new row
     """
-    print("Updating worksheet...")
+    print("\nUpdating worksheet...")
     survey_sheet = SHEET.worksheet("survey_answers")
     survey_sheet.append_row(results)
-    print("Worksheet updated")
+    print("Worksheet updated\n\n")
+    end_of_survey()
+
+
+def end_of_survey():
+    """
+    Giver user choice to view surveys or complete another
+    """
+    print("Thank you for completing this survey!")
+    print("Would you like to:\n")
+    print("A) Complete another survey")
+    print("B) View other surveys")
+    print("C) Exit the program")
+
+    while True:
+        end_of_survey_result = input(
+            "\nPlease select 'a' , 'b' or 'c':\n"
+        )
+
+        if end_of_survey_result == "a":
+            personal_information_name()
+            return False
+
+        if end_of_survey_result == "b":
+            import_all_values()
+            return False
+
+        if end_of_survey_result == "c":
+            exit()
+            return False
+
+        print("\nWhoops! Something went wrong.")
 
 
 def import_all_values():
@@ -375,15 +410,17 @@ def import_all_values():
     find_survey_input_one()
 
 
+def input_choice():
+    """
+    Give user different choices for filtering surveys
+    """
+    print("")
+
+
 def find_survey_input_one():
     """
     Asks user for car make to search in spreadsheet
     """
-    print(
-        "To find any existing survey, we will need the make"
-        ", model and year of car.\n"
-        )
-
     while True:
         global find_survey_manufacturer
         find_survey_manufacturer = input(
