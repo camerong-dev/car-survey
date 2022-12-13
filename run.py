@@ -125,8 +125,6 @@ def personal_information_age():
     global user_age
     user_age = age_input
 
-    return age_input
-
 
 def name_check(values):
     """
@@ -167,7 +165,7 @@ def car_info_intro():
     to provide basic info
     of their car
     """
-    name_input = personal_information_name()
+    name_input = username
     print("Thank you " + str(name_input).title() + " for your details.")
     print(
         "We are now going to ask some basic questions about your car\n"
@@ -444,14 +442,13 @@ def start_search_one():
     Searches spreadsheet with manufacturer user inputted
     """
     survey_sheet = SHEET.worksheet("survey_answers")
-    list_of_lists = survey_sheet.get_all_values()
-    data = list_of_lists
-    df = pd.DataFrame(data, columns=[
+    data = survey_sheet.get_all_values()
+    table = pd.DataFrame(data, columns=[
         'Name: ', 'Age: ', 'Make Of Car: ', 'Model Of Car: ',
         'Year Of Car: ', 'First Year Of Ownership: ',
         'How The Car Is Used: ', 'Cons: '
         ])
-    print(df)
+    print(table)
 
 
 def start_search_two():
