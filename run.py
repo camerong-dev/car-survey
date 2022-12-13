@@ -52,7 +52,7 @@ def introduction_input_check(values):
     Error displayed if user inputs letter other than e
     """
     try:
-        if ((values != "e") or (len(values) != 1)):
+        if ((values != "e") or (len(values) == 0)):
             raise ValueError(
                 "Please enter 'e' and try again"
             )
@@ -429,7 +429,7 @@ def input_choice():
             return False
 
         if input_choice_answer == "b":
-            import_all_values()
+            find_survey_input_two_p1()
             return False
 
         if input_choice_answer == "c":
@@ -453,16 +453,32 @@ def find_survey_input_one():
     return find_survey_input_one()
 
 
-def find_survey_input_two():
+def find_survey_input_two_p1():
+    """
+    Asks user for car manufacturer to search in spreadsheet
+    """
+    global find_man_model_p1
+    find_man_model_p1 = input(
+        "\nPlease enter the manufacturer below:\n"
+    )
+    if find_survey_input_two_p1_check(find_man_model_p1):
+        find_survey_input_two_p2()
+
+    return find_survey_input_two_p1()
+
+
+def find_survey_input_two_p2():
     """
     Asks user for car model to search in spreadsheet
     """
-    global find_survey_model
-    find_survey_model = input(
+    global find_man_model_p2
+    find_man_model_p2 = input(
         "\nPlease enter the model below:\n"
     )
-    find_survey_input_three()
-    return find_survey_input_two()
+    if find_survey_input_two_p2_check(find_man_model_p2):
+        start_search_two()
+    
+    return find_survey_input_two_p2()
 
 
 def find_survey_input_three():
@@ -481,12 +497,44 @@ def find_survey_input_three():
 
 def find_survey_manufacturer_check(values):
     """
-    ValueError if user inputs numbers
+    ValueError if user inputs numbers or leaves
     """
     try:
-        if values.isdigit():
+        if (values.isdigit() or (len(values) == 0)):
             raise ValueError(
                 "Please enter a valid manufacturer and try again.\n"
+            )
+    except ValueError as emsg:
+        print(f"Whoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
+
+
+def find_survey_input_two_p1_check(values):
+    """
+    ValueError if user inputs numbers or leaves blank
+    """
+    try:
+        if (values.isdigit() or (len(values) == 0)):
+            raise ValueError(
+                "Please enter a valid manufacturer and try again.\n"
+            )
+    except ValueError as emsg:
+        print(f"Whoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
+
+
+def find_survey_input_two_p2_check(values):
+    """
+    ValueError if user leaves blank
+    """
+    try:
+        if (len(values) == 0):
+            raise ValueError(
+                "Please enter a valid model and try again.\n"
             )
     except ValueError as emsg:
         print(f"Whoops! Something went wrong. {emsg} \n")
@@ -535,12 +583,26 @@ def start_search_one():
 
 def start_search_two():
     """
-    Searches spreadsheet with model user inputted
+    Searches spreadsheet with manufacturer and model user inputted
     """
-    survey_sheet = SHEET.worksheet("survey_answers")
-    found_cell_row = survey_sheet.findall(find_survey_model)
-    found_search_two = survey_sheet.row_values(found_cell_row)
-    print(found_search_two)
+    filter_two = \
+        table[(table['Make Of Car: '] == find_man_model_p1) \
+            & (table['Model Of Car: '] == find_man_model_p2)]
+    print("\n")
+    print(filter_two)
+
+    print("\n\nThank you for checking out this survey.")
+
+    while True:
+        input_one_choice = input(
+            "\nPlease select 'e' to exit program: \n"
+        )
+
+        if input_one_choice == "e":
+            exit()
+            return False
+
+        print("\nWhoops! Something went wrong.")
 
 
 def main():
