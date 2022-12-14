@@ -681,7 +681,7 @@ def find_survey_input_three_p3_check(values):
         return False
 
     return True
-    
+
 
 def find_survey_input_four_p1_check(values):
     """
@@ -942,6 +942,7 @@ def start_search_five():
 
         print("\nWhoops! Something went wrong.")
 
+
 def reset_filters():
     """
     Resets user inputs for the filters they used to search
@@ -957,7 +958,7 @@ def reset_filters():
     display_y1 = None
 
     import_all_values()
-        
+
 
 def main():
     """
