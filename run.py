@@ -374,11 +374,12 @@ def end_of_survey():
     print("Thank you for completing this survey!")
     print("Would you like to:\n")
     print("A) View other surveys")
-    print("B) Exit the program")
+    print("B) Complete another survey")
+    print("C) Exit the program")
 
     while True:
         end_of_survey_result = input(
-            "\nPlease select 'a' or 'b':\n"
+            "\nPlease select 'a', 'b' or 'c':\n"
         )
 
         if end_of_survey_result == "a":
@@ -387,6 +388,10 @@ def end_of_survey():
 
         if end_of_survey_result == "b":
             reset_survey_inputs()
+            return False
+
+        if end_of_survey_result == "c":
+            exit()
             return False
 
         print("\nWhoops! Something went wrong.")
@@ -411,7 +416,7 @@ def import_all_values():
     global table
     table = pd.DataFrame(data, columns=[
         'Name: ', 'Age: ', 'Make Of Car: ', 'Model Of Car: ',
-        'Year Of Car: ', 'Year Of Ownership: ',
+        'Year Of Car: ', 'Owned Since: ',
         'Pros: ', 'Cons: '
         ])
     input_choice()
@@ -740,14 +745,27 @@ def start_search_one():
 
     else:
         print(filter_one)
-        print("\n\nThank you for checking out this survey.")
+        print("\n\nThank you for checking this out!")
 
     while True:
+        print("\nWould you like to:")
+        print("A) Search for more surveys")
+        print("B) Fill out a survey")
+        print("C) Exit the program")
+
         input_choice = input(
-            "\nPlease select 'e' to exit program: \n"
+            "\nPlease select 'a', 'b' or 'c': \n"
         )
 
-        if input_choice == "e":
+        if input_choice == "a":
+            reset_filters()
+            return False
+
+        if input_choice == 'b':
+            main()
+            return False
+
+        if input_choice == "c":
             exit()
             return False
 
@@ -770,14 +788,27 @@ def start_search_two():
 
     else:
         print(filter_two)
-        print("\n\nThank you for checking out this survey.")
+        print("\n\nThank you for checking this out!")
 
     while True:
+        print("\nWould you like to:")
+        print("A) Search for more surveys")
+        print("B) Fill out a survey")
+        print("C) Exit the program")
+
         input_choice = input(
-            "\nPlease select 'e' to exit program: \n"
+            "\nPlease select 'a', 'b' or 'c': \n"
         )
 
-        if input_choice == "e":
+        if input_choice == "a":
+            reset_filters()
+            return False
+
+        if input_choice == 'b':
+            main()
+            return False
+
+        if input_choice == "c":
             exit()
             return False
 
@@ -801,14 +832,27 @@ def start_search_three():
 
     else:
         print(filter_three)
-        print("\n\nThank you for checking out this survey.")
+        print("\n\nThank you for checking this out!")
 
     while True:
+        print("\nWould you like to:")
+        print("A) Search for more surveys")
+        print("B) Fill out a survey")
+        print("C) Exit the program")
+
         input_choice = input(
-            "\nPlease select 'e' to exit program: \n"
+            "\nPlease select 'a', 'b' or 'c': \n"
         )
 
-        if input_choice == "e":
+        if input_choice == "a":
+            reset_filters()
+            return False
+
+        if input_choice == 'b':
+            main()
+            return False
+
+        if input_choice == "c":
             exit()
             return False
 
@@ -831,14 +875,27 @@ def start_search_four():
 
     else:
         print(filter_four)
-        print("\n\nThank you for checking out this survey.")
+        print("\n\nThank you for checking this out!")
 
     while True:
+        print("\nWould you like to:")
+        print("A) Search for more surveys")
+        print("B) Fill out a survey")
+        print("C) Exit the program")
+
         input_choice = input(
-            "\nPlease select 'e' to exit program: \n"
+            "\nPlease select 'a', 'b' or 'c': \n"
         )
 
-        if input_choice == "e":
+        if input_choice == "a":
+            reset_filters()
+            return False
+
+        if input_choice == 'b':
+            main()
+            return False
+
+        if input_choice == "c":
             exit()
             return False
 
@@ -859,18 +916,47 @@ def start_search_five():
 
     else:
         print(filter_five)
-        print("\n\nThank you for checking out this survey.")
+        print("\n\nThank you for checking this out!")
 
     while True:
+        print("\nWould you like to:")
+        print("A) Search for more surveys")
+        print("B) Fill out a survey")
+        print("C) Exit the program")
+
         input_choice = input(
-            "\nPlease select 'e' to exit program: \n"
+            "\nPlease select 'a', 'b' or 'c': \n"
         )
 
-        if input_choice == "e":
+        if input_choice == "a":
+            reset_filters()
+            return False
+
+        if input_choice == 'b':
+            main()
+            return False
+
+        if input_choice == "c":
             exit()
             return False
 
         print("\nWhoops! Something went wrong.")
+
+def reset_filters():
+    """
+    Resets user inputs for the filters they used to search
+    """
+    display_manufacturer = None
+    display_mm1 = None
+    display_mm2 = None
+    display_mmy1 = None
+    display_mmy2 = None
+    display_mmy3 = None
+    display_my1 = None
+    display_my2 = None
+    display_y1 = None
+
+    import_all_values()
         
 
 def main():
