@@ -103,7 +103,7 @@ def personal_information_name():
     personal_information_age()
 
     global username
-    username = name_input
+    username = name_input.lower()
 
     return name_input
 
@@ -177,7 +177,7 @@ def car_info_make():
     """
     while True:
         global car_make
-        car_make = input("Please enter the car manufacter here:\n")
+        car_make = input("Please enter the car manufacter here:\n").lower()
 
         if car_make_check(car_make):
             car_info_model()
@@ -191,7 +191,7 @@ def car_info_model():
     """
     while True:
         global car_model
-        car_model = input("\nPlease enter the car model here:\n")
+        car_model = input("\nPlease enter the car model here:\n").lower()
 
         car_info_year()
         break
@@ -437,7 +437,7 @@ def input_choice():
             return False
 
         if input_choice_answer == "d":
-            find_survey_input_four()
+            find_survey_input_four_p1()
             return False
 
         if input_choice_answer == "e":
@@ -529,6 +529,34 @@ def find_survey_input_three_p3():
         if find_survey_input_three_p3_check(display_mmy3):
             start_search_three()
         return find_survey_input_three_p3()
+
+
+def find_survey_input_four_p1():
+    """
+    Asks user for car manufacturer to search in spreadsheet
+    """
+    while True:
+        global display_my1
+        display_my1 = input(
+            "Please enter the Manufacturer below:\n"
+        )
+        if find_survey_input_four_p1_check(display_my1):
+            find_survey_input_four_p2()
+        return find_survey_input_four_p1()
+
+
+def find_survey_input_four_p2():
+    """
+    Asks user for car year to search in spreadsheet
+    """
+    while True:
+        global display_my2
+        display_my2 = input(
+            "Please enter the year:\n"
+        )
+        if find_survey_input_four_p2_check(display_my2):
+            start_search_four()
+        return find_survey_input_four_p2()
 
 
 def find_survey_manufacturer_check(values):
@@ -625,6 +653,38 @@ def find_survey_input_three_p3_check(values):
         return False
 
     return True
+    
+
+def find_survey_input_four_p1_check(values):
+    """
+    ValueError if user inputs numbers or leaves blank
+    """
+    try:
+        if (values.isdigit() or (len(values) == 0)):
+            raise ValueError(
+                "Please enter a valid manufacturer and try again.\n"
+            )
+    except ValueError as emsg:
+        print(f"Whoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
+
+
+def find_survey_input_four_p2_check(values):
+    """
+    ValueError if user inputs letters or leaves blank
+    """
+    try:
+        if (values.isalpha() or (len(values) == 0)):
+            raise ValueError(
+                "Please enter a valid year and try again.\n"
+            )
+    except ValueError as emsg:
+        print(f"Whoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
 
 
 def start_search_one():
@@ -702,6 +762,36 @@ def start_search_three():
 
     else:
         print(filter_three)
+        print("\n\nThank you for checking out this survey.")
+
+    while True:
+        input_choice = input(
+            "\nPlease select 'e' to exit program: \n"
+        )
+
+        if input_choice == "e":
+            exit()
+            return False
+
+        print("\nWhoops! Something went wrong.")
+
+
+def start_search_four():
+    """
+    Search spreadsheet for manufacturer and year user inputted
+    """
+    con_one = table['Make Of Car: '] == display_my1
+    con_two = table['Year Of Car: '] == display_my2
+    filter_four = table[con_one & con_two]
+    print("\n")
+
+    any_value = len(filter_four.index)
+
+    if any_value == 0:
+        print("Sorry, no surveys match your search.")
+
+    else:
+        print(filter_four)
         print("\n\nThank you for checking out this survey.")
 
     while True:
