@@ -74,7 +74,7 @@ def user_choice():
     user_choice_input = input("\nPlease select either 'a' or 'b':\n")
 
     if user_choice_input == "a":
-        personal_information_name()
+        main()
         return False
 
     if user_choice_input == "b":
@@ -163,8 +163,7 @@ def car_info_intro():
     to provide basic info
     of their car
     """
-    name_input = username
-    print("Thank you " + str(name_input).title() + " for your details.")
+    print("Thank you " + str(username).title() + " for your details.")
     print(
         "We are now going to ask some basic questions about your car\n"
     )
@@ -387,10 +386,20 @@ def end_of_survey():
             return False
 
         if end_of_survey_result == "b":
-            exit()
+            reset_survey_inputs()
             return False
 
         print("\nWhoops! Something went wrong.")
+
+
+def reset_survey_inputs():
+    username = None
+    user_age = None
+    car_make = None
+    car_model = None
+    car_year = None
+
+    main()
 
 
 def import_all_values():
@@ -866,10 +875,12 @@ def start_search_five():
 
 def main():
     """
-    Contains all major functions
+    Contains key function starting points
     """
-    introduction()
+    personal_information_name()
     car_info_intro()
 
 
+introduction()
+user_choice()
 main()
