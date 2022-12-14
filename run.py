@@ -433,7 +433,15 @@ def input_choice():
             return False
 
         if input_choice_answer == "c":
-            exit()
+            find_survey_input_three()
+            return False
+
+        if input_choice_answer == "d":
+            find_survey_input_four()
+            return False
+
+        if input_choice_answer == "e":
+            find_survey_input_five()
             return False
 
         print("\nWhoops! Something went wrong.")
@@ -443,11 +451,11 @@ def find_survey_input_one():
     """
     Asks user for car make to search in spreadsheet
     """
-    global find_survey_manufacturer
-    find_survey_manufacturer = input(
+    global display_manufacturer
+    display_manufacturer = input(
         "\nPlease enter the manufacturer below:\n"
     )
-    if find_survey_manufacturer_check(find_survey_manufacturer):
+    if find_survey_manufacturer_check(display_manufacturer):
         start_search_one()
         
     return find_survey_input_one()
@@ -457,11 +465,11 @@ def find_survey_input_two_p1():
     """
     Asks user for car manufacturer to search in spreadsheet
     """
-    global find_man_model_p1
-    find_man_model_p1 = input(
+    global display_mm1
+    display_mm1 = input(
         "\nPlease enter the manufacturer below:\n"
     )
-    if find_survey_input_two_p1_check(find_man_model_p1):
+    if find_survey_input_two_p1_check(display_mm1):
         find_survey_input_two_p2()
 
     return find_survey_input_two_p1()
@@ -471,11 +479,11 @@ def find_survey_input_two_p2():
     """
     Asks user for car model to search in spreadsheet
     """
-    global find_man_model_p2
-    find_man_model_p2 = input(
+    global display_mm2
+    display_mm2 = input(
         "\nPlease enter the model below:\n"
     )
-    if find_survey_input_two_p2_check(find_man_model_p2):
+    if find_survey_input_two_p2_check(display_mm2):
         start_search_two()
     
     return find_survey_input_two_p2()
@@ -563,7 +571,7 @@ def start_search_one():
     """
     Searches spreadsheet with manufacturer user inputted
     """
-    filter_one = table[table['Make Of Car: '] == find_survey_manufacturer]
+    filter_one = table[table['Make Of Car: '] == display_manufacturer]
     print("\n")
     print(filter_one)
 
@@ -585,9 +593,9 @@ def start_search_two():
     """
     Searches spreadsheet with manufacturer and model user inputted
     """
-    filter_two = \
-        table[(table['Make Of Car: '] == find_man_model_p1) \
-            & (table['Model Of Car: '] == find_man_model_p2)]
+    con_one = table['Make Of Car: '] == display_mm1
+    con_two = table['Model Of Car: '] == display_mm2
+    filter_two = table[con_one & con_two]
     print("\n")
     print(filter_two)
 
