@@ -644,11 +644,11 @@ def start_search_one():
         print("\n\nThank you for checking out this survey.")
 
     while True:
-        input_one_choice = input(
+        input_choice = input(
             "\nPlease select 'e' to exit program: \n"
         )
 
-        if input_one_choice == "e":
+        if input_choice == "e":
             exit()
             return False
 
@@ -663,9 +663,15 @@ def start_search_two():
     con_two = table['Model Of Car: '] == display_mm2
     filter_two = table[con_one & con_two]
     print("\n")
-    print(filter_two)
 
-    print("\n\nThank you for checking out this survey.")
+    any_value = len(filter_two.index)
+
+    if any_value == 0:
+        print("Sorry, no surveys match your search.")
+
+    else:
+        print(filter_two)
+        print("\n\nThank you for checking out this survey.")
 
     while True:
         input_choice = input(
@@ -688,9 +694,15 @@ def start_search_three():
     con_three = table['Year Of Car: '] == display_mmy3
     filter_three = table[con_one & con_two & con_three]
     print("\n")
-    print(filter_three)
 
-    print("\n\nThank you for checking out this survey.")
+    any_value = len(filter_three.index)
+
+    if any_value == 0:
+        print("Sorry, no surveys match your search.")
+
+    else:
+        print(filter_three)
+        print("\n\nThank you for checking out this survey.")
 
     while True:
         input_choice = input(
