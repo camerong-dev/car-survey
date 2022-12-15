@@ -52,7 +52,7 @@ def introduction_input_check(values):
     Error displayed if user inputs letter other than e
     """
     try:
-        if ((values != "e") or (len(values) == 0)):
+        if ((values != "e") or (len(values) == 0) or (len(values) >= 2)):
             raise ValueError(
                 "Please enter 'e' and try again"
             )
@@ -126,10 +126,10 @@ def personal_information_age():
 
 def name_check(values):
     """
-    ValueError if user inputs numbers
+    ValueError if user inputs numbers or leaves blank
     """
     try:
-        if values.isdigit():
+        if ((values.isdigit()) or (len(values == 0))):
             raise ValueError(
                 "Please enter a name and try again.\nExample: Jane Doe"
             )
@@ -142,10 +142,10 @@ def name_check(values):
 
 def age_check(values):
     """
-    ValueError if user inputs letters
+    ValueError if user inputs letters, leaves blank or more than 3 digits
     """
     try:
-        if values.isalpha():
+        if ((values.isalpha()) or (len(values <= 1)) or (len(values >= 3))):
             raise ValueError(
                 "Please enter an age and try again."
             )
@@ -212,10 +212,10 @@ def car_info_year():
 
 def car_make_check(values):
     """
-    ValueError if user inputs numbers
+    ValueError if user inputs numbers or leaves blank
     """
     try:
-        if values.isdigit():
+        if ((values.isdigit()) or (len(values) == 0)):
             raise ValueError(
                 "Please enter a valid manufacturer and try again.\n"
             )
@@ -228,10 +228,10 @@ def car_make_check(values):
 
 def car_year_check(values):
     """
-    ValueError if user inputs letters
+    ValueError if user inputs letters, inputs year less or more than 4 digits
     """
     try:
-        if values.isalpha():
+        if ((values.isalpha()) or (len(values) >= 5) or (len(values) <= 3)):
             raise ValueError(
                 "Please enter a valid year and try again.\nExample: 2003"
             )
@@ -275,7 +275,7 @@ def question_one():
     """
     print("\n\nWe will now ask you some questions")
     print("Please answer to the best of your ability")
-    print("As this can provide helpful insights for others.")
+    print("Note a maximum character count of 15 per answer.")
     print("-----------------------------------------------")
     print("\n1) What year did you come into ownership of this car?")
 
@@ -291,10 +291,10 @@ def question_one():
 
 def question_one_check(values):
     """
-    ValueError appears if user inputs letters
+    ValueError appears if user inputs letters, less or more than 4 digits
     """
     try:
-        if values.isalpha():
+        if ((values.isalpha()) or (len(values) >= 5) or (len(values) <= 3)):
             raise ValueError(
                 "Please enter a valid year and try again.\nExample: 2003"
             )
@@ -310,19 +310,40 @@ def question_two():
     Second question for user to answer
     """
     print("\n2) List two things you like about your car")
-    print("   eg - Sound of car, comfortable seats \n")
-    global two_input
-    two_input = input("Please answer here:\n")
+    print("   e.g. - Sound of car, comfortable seats \n")
+    print("\n   Please answer using 15 characters or less\n")
 
-    question_three()
+    while True:
+        global two_input
+        two_input = input(
+            "Please answer here:\n"
+        )
 
+        if question_two_check(two_input):
+            question_three()
+
+
+def question_two_check(values):
+    """
+    ValueError appears if user leaves blank or enters more than 15 characters
+    """
+    try:
+        if ((len(values) == 0) or (len(values) >= 15)):
+            raise ValueError(
+                "Please answer using 15 characters or less.\n"
+            )
+    except ValueError as emsg:
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
 
 def question_three():
     """
     Third question for user to answer
     """
     print("\n3) List two thing you dislike about your car")
-    print("   eg - Stiff ride, cheap feeling interior \n")
+    print("   e.g. - Stiff ride, cheap feeling interior \n")
     global three_input
     three_input = input("Please answer here:\n")
 
