@@ -81,8 +81,11 @@ def user_choice():
         import_all_values()
         return False
 
-    print("Whoops! Something went wrong.")
-    print("Please select either 'y' or 'n'.\n")
+    if user_choice_input != "a" or "b":
+        print("\nWhoops! Something went wrong.")
+        print("Please select either 'a' or 'b'.\n")
+        user_choice()
+        return False
 
 
 def personal_information_name():
@@ -129,7 +132,7 @@ def name_check(values):
     ValueError if user inputs numbers or leaves blank
     """
     try:
-        if ((values.isdigit()) or (len(values == 0))):
+        if ((values.isdigit()) or (len(values) == 0)):
             raise ValueError(
                 "Please enter a name and try again.\nExample: Jane Doe"
             )
@@ -145,7 +148,9 @@ def age_check(values):
     ValueError if user inputs letters, leaves blank or more than 3 digits
     """
     try:
-        if ((values.isalpha()) or (len(values <= 1)) or (len(values >= 3))):
+        if (
+            (values.isalpha()) or (len(str(values)) <= 1) or
+                (len(str(values)) >= 3)):
             raise ValueError(
                 "Please enter an age and try again."
             )
@@ -165,7 +170,7 @@ def car_info_intro():
     """
     print("Thank you " + str(username).title() + " for your details.")
     print(
-        "We are now going to ask some basic questions about your car\n"
+        "We are now going to ask some basic questions about your car:"
     )
     car_info_make()
 
@@ -176,7 +181,7 @@ def car_info_make():
     """
     while True:
         global car_make
-        car_make = input("Please enter the car manufacter here:\n").lower()
+        car_make = input("\nPlease enter the car manufacter here:\n").lower()
 
         if car_make_check(car_make):
             car_info_model()
@@ -265,9 +270,10 @@ def car_info_check():
             car_info_make()
             return False
 
-        print("\nWhoops! Something went wrong.")
-        print("Please select either 'y' or 'n'.")
-
+        if car_info_check_result != "y" or "n":
+            print("\nWhoops! Something went wrong.")
+            print("Please select either 'y' or 'n'.")
+        
 
 def question_one():
     """
@@ -338,16 +344,39 @@ def question_two_check(values):
 
     return True
 
+
 def question_three():
     """
     Third question for user to answer
     """
     print("\n3) List two thing you dislike about your car")
     print("   e.g. - Stiff ride, cheap feeling interior \n")
-    global three_input
-    three_input = input("Please answer here:\n")
+    print("\n   Please answer using 15 characters or less\n")
 
-    final_check()
+    while True:
+        global three_input
+        three_input = input(
+            "Please answer here:\n"
+        )
+
+        if question_three_check(three_input):
+            final_check()
+
+
+def question_three_check(values):
+    """
+     ValueError appears if user leaves blank or enters more than 15 characters
+    """
+    try:
+        if ((len(values) == 0) or (len(values) >= 15)):
+            raise ValueError(
+                "Please answer using 15 characters or less.\n"
+            )
+    except ValueError as emsg:
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
 
 
 def final_check():
