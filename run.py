@@ -236,7 +236,9 @@ def car_year_check(values):
     ValueError if user inputs letters, inputs year less or more than 4 digits
     """
     try:
-        if ((values.isalpha()) or (len(values) >= 5) or (len(values) <= 3)):
+        if (
+            (values.isalpha()) or (len(str(values)) >= 5) or
+                (len(str(values)) <= 3)):
             raise ValueError(
                 "Please enter a valid year and try again.\nExample: 2003"
             )
@@ -273,7 +275,7 @@ def car_info_check():
         if car_info_check_result != "y" or "n":
             print("\nWhoops! Something went wrong.")
             print("Please select either 'y' or 'n'.")
-        
+
 
 def question_one():
     """
@@ -281,7 +283,7 @@ def question_one():
     """
     print("\n\nWe will now ask you some questions")
     print("Please answer to the best of your ability")
-    print("Note a maximum character count of 15 per answer.")
+    print("Note a maximum character count of 20 per answer.")
     print("-----------------------------------------------")
     print("\n1) What year did you come into ownership of this car?")
 
@@ -300,7 +302,9 @@ def question_one_check(values):
     ValueError appears if user inputs letters, less or more than 4 digits
     """
     try:
-        if ((values.isalpha()) or (len(values) >= 5) or (len(values) <= 3)):
+        if (
+            (values.isalpha()) or (len(str(values)) >= 5) or 
+                (len(str(values)) <= 3)):
             raise ValueError(
                 "Please enter a valid year and try again.\nExample: 2003"
             )
@@ -315,9 +319,9 @@ def question_two():
     """
     Second question for user to answer
     """
-    print("\n2) List two things you like about your car")
+    print("\n2) List one or two things you like about your car")
     print("   e.g. - Sound of car, comfortable seats \n")
-    print("\n   Please answer using 15 characters or less\n")
+    print("   Please answer using 20 characters or less\n")
 
     while True:
         global two_input
@@ -331,12 +335,12 @@ def question_two():
 
 def question_two_check(values):
     """
-    ValueError appears if user leaves blank or enters more than 15 characters
+    ValueError appears if user leaves blank or enters more than 20 characters
     """
     try:
-        if ((len(values) == 0) or (len(values) >= 15)):
+        if ((len(values) == 0) or (len(values) >= 20)):
             raise ValueError(
-                "Please answer using 15 characters or less.\n"
+                "Please answer using 20 characters or less.\n"
             )
     except ValueError as emsg:
         print(f"\nWhoops! Something went wrong. {emsg} \n")
@@ -349,9 +353,9 @@ def question_three():
     """
     Third question for user to answer
     """
-    print("\n3) List two thing you dislike about your car")
+    print("\n3) List one or two things you dislike about your car")
     print("   e.g. - Stiff ride, cheap feeling interior \n")
-    print("\n   Please answer using 15 characters or less\n")
+    print("   Please answer using 20 characters or less\n")
 
     while True:
         global three_input
@@ -365,12 +369,12 @@ def question_three():
 
 def question_three_check(values):
     """
-     ValueError appears if user leaves blank or enters more than 15 characters
+     ValueError appears if user leaves blank or enters more than 20 characters
     """
     try:
-        if ((len(values) == 0) or (len(values) >= 15)):
+        if ((len(values) == 0) or (len(values) >= 20)):
             raise ValueError(
-                "Please answer using 15 characters or less.\n"
+                "Please answer using 20 characters or less.\n"
             )
     except ValueError as emsg:
         print(f"\nWhoops! Something went wrong. {emsg} \n")
