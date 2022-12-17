@@ -104,4 +104,40 @@ Here the user has a message to let them know that the worksheet has been updated
 
 ![Image of update worksheet message and final options](docs/img/update-sheet-final-options.jpg)
 
-### Filteri
+### Finding Surveys
+
+The user has 5 different options to choose from.  The input is validated and an error is thrown if the input doesn't match the requirements.
+
+![Image of survey finding options](docs/img/survey-filter.jpg)
+
+### Finding Survey via a Manufacturer
+
+If the user selected 'a' they will be asked to input a manufacturer. Input is validated and an error is thrown if it contains numbers or if left blank. User can input as many letters as they want but will no results will appear.  If the database does not contain a manufacturer matching the input, a message will appear letting the user know. 
+
+![Image of survey search via manufacturer](docs/img/manufacturer-output.jpg)
+
+### Finding Survey via Manufacturer and Model
+
+If the user selected 'b' they will be asked to input a manufacturer and model. As inputs are seperate, they are validated on their own. Manufacturer input will throw an error if left blank or containing numbers. The model input will throw an error if left blank, there is also no limit to number of characters being inputted. If database does not contain a manufacturer and model matching the inputs, a message will appear letting the user know.
+
+![Image of survey search via manufacturer and model](docs/img/manufacturer-model-output.jpg)
+
+### Finding Survey via Manufacturer, Model and Year
+
+If the user selected 'c' they will be asked to input a manufacturer, model and year. As inputs are seperate, they are each validated on their own. Manufacturer input will throw an error if left blank or containing numbers. Model input will throw an error if left blank. The year input will throw an error if left blank or containing letters, again no limit to number of characters being inputted.  If database does not contain the manufacturer, model and year matching the inputs a message will appear letting the user know. 
+
+![Image of survey search via manufacturer, model and year](docs/img/manufacturer-model-year-output.jpg)
+
+### Finding Survey via Manufacturer and Year
+
+If the user selected 'd' they will be asked to input a manufacturer and year. As inputs are seperate, they validated on their own. Manufacturer input will throw an error if left blank or containing numbers. The year input will throw an error if left blank or containing letters, no limit to number of characters being inputted. If database does not contain the manufacturer and year matching the inputs a message will appear letting the user know. 
+
+![Image of survey search via manufacturer and year](docs/img/manufacturer-year-output.jpg)
+
+### Finding Survey via the Year & After Survey Options
+
+If the user selected 'e' they will be asked to input a manufacturer and year. Input is validated and an error is thrown if it contains letters or if left blank. User can input as many characters as they want. If the database does not contain any year matching the input,  a message will appear letting the user know. 
+
+At the same time of any surveys being printed, an option list will be printed underneath. This gives the user the option to search for a survey again, complete a survey or exit the program.
+
+![Image of survey search via year](docs/img/year-output.jpg)
