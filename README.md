@@ -1,31 +1,107 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Car Survey
 
-Welcome Cameron,
+Car Survey allows users to fill out a basic survey and search for existing surveys based on either manufacturer, model and/or year.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## Live site
+[Car Survey](https://car-survey.herokuapp.com/)
 
-## Reminders
+## Project Goals
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+The idea of Car Survey was for people in the market of purchasing a car, be able to easily view surveys of real world owners of the vehicle.  From this idea I wanted to:
 
-## Creating the Heroku app
+  - To enter basic vehicle details
+  - To enter basic user details
+  - Save this data to an external spreadsheet
+  - Import back into the program and print when required
+  
+## Database Structure
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+Google Sheets is used to store all user inputs. 
 
-1. `heroku/python`
-2. `heroku/nodejs`
+Table consists of 8 columns: Name, Age, Make Of Car, Model Of Car, Year Of Car, Owned Since, Pros and Cons.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+![Image of Database](docs/img/database-titles.jpg)
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+Each column has individually assigned values that the end user has entered.  Each of the inputs have maximum character limits, exceeding them will display an error and prompt the user to try again. 
 
-Connect your GitHub repository and deploy as normal.
+## Features
 
-## Constraints
+### Introduction
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+Start screen of the program consists of a welcome message, an explanantion of the program and one option.  The input is validated and an error is thrown if it does not match the requirements.
 
------
-Happy coding!
+![Image of introduction](docs/img/introduction.jpg)
+
+### Complete Survey or Find Survey
+
+Here the user as the option of either completing a survey or finding a survey.  The input is validated and an error is thrown if it does not match the requirements.
+
+![Image of a user choice](docs/img/user-choice.jpg)
+
+### Name Input
+
+The user can enter their name, including their surname if desired.  The input is validated and an error is thrown if the input includes numbers, is left blank or if the input exceeds 20 characters.
+
+![Image of name input](docs/img/name-input.jpg)
+
+### Age Input
+
+The user can enter their age here.  Input is validated and an error is thrown if the input includes letters, left blank or exceeds 3 digits.
+
+![Image of age input](docs/img/age-input.jpg)
+
+### Manufacturer Input (Completing Survey)
+
+The user can enter the manufacturer of their car. Input is validated and an error is thrown if the input contains numbers, is left blank or exceeds 20 characters.
+
+![Image of manufacturer input when completing survey](docs/img/make-input.jpg)
+
+### Model Input (Completing Survey)
+
+The user can enter the model of their car. Input is validated and an error is thrown if the input is left blank or exceeds 20 characters.
+
+![Image of model input when completing survey](docs/img/model-input.jpg)
+
+### Year Input (Completing Survey)
+
+The user can enter the year of their car. Input is validated and an error is thrown if the input contains letters, left blank or exceeds 4 digits.
+
+![Image of year input when completing survey](docs/img/year-input.jpg)
+
+### Car Details Check
+
+The user is shown the values they just inputted. From here they have the choice of continuing with the survey, or if a mistake was made they can go back through the last three questions. Input is validated and an error is thrown if the input doesn't match the requirements. 
+
+![Image of car details check](docs/img/car-input-check.jpg)
+
+### Question One
+
+The user is shown the first question out of three.  The input is validated and an error is thrown if it contains letters, is left blank or exceeds 4 digits.
+
+![Image of question one](docs/img/question-one-input.jpg)
+
+### Question Two
+
+The user is then shown the second question. Input is validated and an error is thrown if it is left blank or exceeds 20 characters.
+
+![Image of question two](docs/img/question-two-input.jpg)
+
+### Question Three
+
+The user is finally shown the last question. Input is validated and an error is throw if it is left blank or exceeds 20 characters.
+
+![Image of question three](docs/img/question-three-input.jpg)
+
+### Question Input Check
+
+The user is show the answers they just entered for the questions. They have the choice of confirming their answers, or they can go through the questions again and change answers if needed. Input is validated and an error is thrown if the input doesn't match the requirements.
+
+![Image of question input check](docs/img/question-check.jpg)
+
+### Updated Worksheet & Final Options
+
+Here the user has a message to let them know that the worksheet has been updated with their data.  They then have the option to find existing surveys, complete the survey again or exit out of the program. The input is validated and an error is thrown if the input doesn't match the requirements.
+
+![Image of update worksheet message and final options](docs/img/update-sheet-final-options.jpg)
+
+### Filteri
