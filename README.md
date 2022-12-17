@@ -1,31 +1,31 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Car Survey
 
-Welcome Cameron,
+Car Survey allows users to fill out a basic survey and search for existing surveys based on either manufacturer, model and/or year.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## Live site
+[Car Survey](https://car-survey.herokuapp.com/)
 
-## Reminders
+## Project Goals
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+The idea of Car Survey was for people in the market of purchasing a car, be able to easily view surveys of real world owners of the vehicle.  From this idea I wanted to:
 
-## Creating the Heroku app
+  - To enter basic vehicle details
+  - To enter basic user details
+  - Save this data to an external spreadsheet
+  - Import back into the program and print when required
+  
+## Database Structure
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+Google Sheets is used to store all user inputs. 
 
-1. `heroku/python`
-2. `heroku/nodejs`
+Table consists of 8 columns: Name, Age, Make Of Car, Model Of Car, Year Of Car, Owned Since, Pros and Cons.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+![Image of Database](docs/img/database-titles.jpeg)
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+Each column has individually assigned values that the end user has entered.  Each of the inputs have maximum character limits, exceeding them will display an error and prompt the user to try again. 
 
-Connect your GitHub repository and deploy as normal.
+## Features
 
-## Constraints
+### Introduction
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
+Start screen of the program consists of a welcome message, an explanantion of the program and one option.  The input is validated.
