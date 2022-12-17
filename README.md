@@ -141,3 +141,77 @@ If the user selected 'e' they will be asked to input a manufacturer and year. In
 At the same time of any surveys being printed, an option list will be printed underneath. This gives the user the option to search for a survey again, complete a survey or exit the program.
 
 ![Image of survey search via year](docs/img/year-output.jpg)
+
+## Python Libraries/Modules
+
+  - [gspread](https://docs.gspread.org/en/v5.7.0/) - Used to control Google Sheets API
+  - [oauthlib](https://pypi.org/project/oauthlib/) - Used to manage HTTP request and authenticate to Google Sheets API
+  - [pandas](https://pandas.pydata.org/) - Used to manipulate imported data for user to view
+
+## Validation
+
+[PEP8CI](https://pep8ci.herokuapp.com/) was used to validate the code, no errors were found.
+
+![Image of CI validation](docs/img/ci-validation.jpg)
+
+## Known Issues
+
+ - When user is prompted for a text base input (name, manufacturer etc), they can input punctation marks which will be marked as valid data. This allows the user to proceed and save useless 
+   data to the spreadsheet.
+
+## Future Features
+
+For future features I'd like to:
+
+ - Use colours for errors, questions, inputs etc
+ - Print a random survey when requested
+ - Prompt more questions
+
+## Deployment to Heroku
+
+1. Visited [Heroku](https://heroku.com/) and opened dashboard. Then selected "New", from the drop down I chose "Create new app".
+2. I put my name as "car-survey", selected Europe as my region. Then "Create app".
+
+![Image of creating new app on Heroku](docs/img/heroku-create-new-app.jpg)
+
+3. Once created go to "Deploy" then under "Deployment method" select GitHub and connect account.
+
+![Image of deployment method section on Heroku](docs/img/heroku-deployment-method.jpg)
+
+4. Once connected, I selected main branch from "car-survey" repository.
+
+![Image of connected account on Heroku](docs/img/connected-to-github.jpg)
+
+5. From there I go to the "Settings" tab.
+6. Then I go to "Config Vars" section and added the key "CREDS" then copy and pasted all data within my CREDS file.
+7. After CREDS have been added, I add key "PORT" with value "8000".
+
+![Image of Config Vars on Heroku](docs/img/config-vars-heroku.jpg)
+
+8. Once "Config Vars" has been filled out, I go to "Buildpacks" section. I add python and nodejs. Python must come before the nodejs buildpack.
+
+![Image of buildpacks on Heroku](docs/img/buildpacks-heroku.jpg)
+
+9. I then go back to the "Deploy" tab and enable automatic deploys. 
+
+![Image of automatic deploys being enabled](docs/img/automatic-deploys-heroku.jpg)
+
+10. Link of deployed app was shown on screen as - https://car-survey.herokuapp.com/
+
+## Credits
+
+### Code
+
+ - Google Sheets API connection method is taken from Love Sandwiches walkthrough project
+ - Try and Except method was influenced from Love Sandwiches walkthrough
+ - Dave Horrocks on CI Slack helped on splitting a list
+ - Jo Heyndels on CI Slack helped debug and solve issue
+
+### Resources
+
+ - Code Institute Project 3 Walkthrough
+ - [StackOverflow](https://stackoverflow.com)
+ - [Pandas documentation](https://pandas.pydata.org/docs/user_guide/index.html)
+ - [Gspread documentation](https://docs.gspread.org/en/v5.7.0/)
+ - [W3Schools](https://www.w3schools.com/python/default.asp)
+ - [GeeksForGeeks](https://www.geeksforgeeks.org/python-programming-language/?ref=shm)

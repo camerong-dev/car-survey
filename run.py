@@ -674,7 +674,7 @@ def find_survey_input_five():
 
 def find_survey_manufacturer_check(values):
     """
-    ValueError if user inputs numbers or leaves
+    ValueError if user inputs numbers or leaves blank
     """
     try:
         if (values.isdigit() or (len(values) == 0)):
