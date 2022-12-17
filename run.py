@@ -145,7 +145,7 @@ def name_check(values):
 
 def age_check(values):
     """
-    ValueError if user inputs letters, inputs less than 2 digits 
+    ValueError if user inputs letters, inputs less than 2 digits
     or more than 3 digits
     """
     try:
@@ -681,7 +681,7 @@ def find_survey_input_two_p2_check(values):
     ValueError if user leaves blank
     """
     try:
-        if (len(values) == 0):
+        if len(values) == 0:
             raise ValueError(
                 "Please enter a valid model and try again.\n"
             )
@@ -713,7 +713,7 @@ def find_survey_input_three_p2_check(values):
     ValueError if user leaves blank
     """
     try:
-        if (len(values) == 0):
+        if len(values) == 0:
             raise ValueError(
                 "Please enter a valid model and try again.\n"
             )
