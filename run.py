@@ -94,6 +94,7 @@ def personal_information_name():
     """
     print("\nPlease enter your name, surname is optional")
     print("Example - Jane Doe\n")
+    print("Please note a maximum of 20 characters can be used\n")
 
     while True:
         name_input = input("Please enter your name here:\n")
@@ -129,12 +130,15 @@ def personal_information_age():
 
 def name_check(values):
     """
-    ValueError if user inputs numbers or leaves blank
+    ValueError if user inputs numbers, enters more than 20 characters
+    or leaves blank
     """
     try:
-        if ((values.isdigit()) or (len(values) == 0)):
+        if (
+            (values.isdigit()) or (len(values) == 0) or
+                (len(values) >= 20)):
             raise ValueError(
-                "Please enter a name and try again.\nExample: Jane Doe"
+                "Please enter a name and try again.\nExample - Jane Doe"
             )
     except ValueError as emsg:
         print(f"\nWhoops! Something went wrong. {emsg} \n")
@@ -179,26 +183,33 @@ def car_info_make():
     """
     Asks for user to input car manufacturer
     """
+    print("\nNote a maximum of 20 characters for your answer")
     while True:
         global car_make
-        car_make = input("\nPlease enter the car manufacter here:\n").lower()
+        car_make = input("Please enter the car manufacter here:\n").lower()
 
         if car_make_check(car_make):
-            car_info_model()
             break
-        return car_info_year()
+
+    car_info_model()
+
+    return car_info_year()
 
 
 def car_info_model():
     """
     Asks user to input car model
     """
+    print("\nNote a maximum of 20 characters for your answer")
     while True:
         global car_model
-        car_model = input("\nPlease enter the car model here:\n").lower()
+        car_model = input("Please enter the car model here:\n").lower()
 
-        car_info_year()
-        break
+        if car_model_check(car_model):
+            break
+
+    car_info_year()
+
     return car_info_model()
 
 
@@ -220,12 +231,30 @@ def car_make_check(values):
     ValueError if user inputs numbers or leaves blank
     """
     try:
-        if ((values.isdigit()) or (len(values) == 0)):
+        if (
+            (values.isdigit()) or (len(values) == 0) or
+                (len(values) >= 20)):
             raise ValueError(
-                "Please enter a valid manufacturer and try again.\n"
+                "Please enter a valid manufacturer and try again."
             )
     except ValueError as emsg:
-        print(f"Whoops! Something went wrong. {emsg} \n")
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
+        return False
+
+    return True
+
+
+def car_model_check(values):
+    """
+    ValueError if user leaves blank or more than 20 characters
+    """
+    try:
+        if ((len(values) == 0) or (len(values) >= 20)):
+            raise ValueError(
+                "Please enter a valid model and try again."
+            )
+    except ValueError as emsg:
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
         return False
 
     return True
@@ -243,7 +272,7 @@ def car_year_check(values):
                 "Please enter a valid year and try again.\nExample: 2003"
             )
     except ValueError as emsg:
-        print(f"Whoops! Something went wrong. {emsg} \n")
+        print(f"\nWhoops! Something went wrong. {emsg} \n")
         return False
 
     return True
@@ -283,7 +312,6 @@ def question_one():
     """
     print("\n\nWe will now ask you some questions")
     print("Please answer to the best of your ability")
-    print("Note a maximum character count of 20 per answer.")
     print("-----------------------------------------------")
     print("\n1) What year did you come into ownership of this car?")
 
