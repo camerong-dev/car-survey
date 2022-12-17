@@ -28,15 +28,15 @@ def introduction():
     print("You'll us provide some personal details")
     print("Once filled out, you can then answer the questions which appear")
     print(
-        "Your results will then be stored on a spreadsheet for others to see"
+        "Your results will then be saved for others to read"
         )
     print("\nIf finding a survey:")
-    print("You'll provide us the make, model and year of car")
-    print("Then we will search for all available surveys of that car\n")
+    print("You'll provide us the make, model and/or year of car")
+    print("Then we will search for all surveys with any of those values\n")
 
     while True:
         introduction_input = input(
-            "Please press the letter 'e' and press enter\n"
+            "Please press the letter 'e' and press enter to continue\n"
          )
 
         if introduction_input_check(introduction_input):
@@ -92,7 +92,7 @@ def personal_information_name():
     """
     Users are requested to input their name
     """
-    print("\nPlease enter your name, including your surname")
+    print("\nPlease enter your name, surname is optional")
     print("Example - Jane Doe\n")
 
     while True:
@@ -145,7 +145,8 @@ def name_check(values):
 
 def age_check(values):
     """
-    ValueError if user inputs letters, leaves blank or more than 3 digits
+    ValueError if user inputs letters, inputs less than 2 digits 
+    or more than 3 digits
     """
     try:
         if (
@@ -164,8 +165,7 @@ def age_check(values):
 
 def car_info_intro():
     """
-    Introduction for the user
-    to provide basic info
+    Introduction for the user to provide basic info
     of their car
     """
     print("Thank you " + str(username).title() + " for your details.")
@@ -303,7 +303,7 @@ def question_one_check(values):
     """
     try:
         if (
-            (values.isalpha()) or (len(str(values)) >= 5) or 
+            (values.isalpha()) or (len(str(values)) >= 5) or
                 (len(str(values)) <= 3)):
             raise ValueError(
                 "Please enter a valid year and try again.\nExample: 2003"
@@ -452,6 +452,9 @@ def end_of_survey():
 
 
 def reset_survey_inputs():
+    """
+    Resets input variables to allow user to go through program again
+    """
     username = None
     user_age = None
     car_make = None
