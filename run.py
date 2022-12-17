@@ -509,9 +509,9 @@ def import_all_values():
 
 def input_choice():
     """
-    Give user different choices for filtering surveys
+    Give user different choices for finding surveys
     """
-    print("\nHow would you like to filter the surveys?\n")
+    print("\nHow would you like to find the surveys?\n")
     print("A) By manufacturer")
     print("B) By manufacturer and model")
     print("C) By manufacturer, model and year")
