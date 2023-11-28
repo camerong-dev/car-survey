@@ -2,6 +2,9 @@
 
 Car Survey allows users to fill out a basic survey and search for existing surveys based on either manufacturer, model and/or year.
 
+## Grade
+Grade PASS
+
 ## Live site
 [Car Survey](https://car-survey.herokuapp.com/)
 
